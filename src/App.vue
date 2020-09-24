@@ -1,28 +1,80 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <Page v-if="data">
+    <Header v-bind="data.info" />
+
+    <Section title="Career Summary" v-if="data.careerSummary">
+      <p>{{ data.careerSummary }}</p>
+    </Section>
+
+    <Section title="Employment History" v-if="data.workExperiences">
+      <Work
+        v-for="work in data.workExperiences"
+        :key="work.title"
+        v-bind="work"
+      />
+    </Section>
+
+    <Section title="Technical Skills" v-if="data.skills">
+      <GenericList :items="data.skills" />
+    </Section>
+
+    <Section title="Education" v-if="data.schools">
+      <School
+        v-for="school in data.schools"
+        :key="school.course"
+        v-bind="school"
+      />
+    </Section>
+
+    <Section title="Certificates" v-if="data.certificates">
+      <Certificate
+        v-for="certificate in data.certificates"
+        :key="certificate.url"
+        v-bind="certificate"
+      />
+    </Section>
+
+    <Footer :info="data.lastUpdate" />
+  </Page>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Page from '@/components/Page.vue';
+import Section from '@/components/Section.vue';
+import GenericList from '@/components/GenericList.vue';
+import Header from '@/components/Header.vue';
+import Work from '@/components/Work.vue';
+import School from '@/components/School.vue';
+import Certificate from '@/components/Certificate.vue';
+import Footer from '@/components/Footer.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    Page,
+    Section,
+    GenericList,
+    Header,
+    Work,
+    School,
+    Certificate,
+    Footer,
+  },
+  beforeMount() {
+    fetch('data.json')
+      .then((res) => res.json())
+      .then(res => this.data = res);
+  },
+  data() {
+    return {
+      data: null,
+    };
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import url('./assets/app.css');
+@import url('./assets/animation.css');
+@import url('./assets/print.css');
 </style>

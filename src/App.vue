@@ -1,5 +1,7 @@
 <template>
   <Page v-if="data">
+    <ActionButton />
+
     <Header v-bind="data.info" />
 
     <Section title="Career Summary" v-if="data.careerSummary">
@@ -39,17 +41,18 @@
 </template>
 
 <script>
-import Page from '@/components/Page.vue';
-import Section from '@/components/Section.vue';
-import GenericList from '@/components/GenericList.vue';
-import Header from '@/components/Header.vue';
-import Work from '@/components/Work.vue';
-import School from '@/components/School.vue';
-import Certificate from '@/components/Certificate.vue';
-import Footer from '@/components/Footer.vue';
+import Page from "@/components/Page.vue";
+import Section from "@/components/Section.vue";
+import GenericList from "@/components/GenericList.vue";
+import Header from "@/components/Header.vue";
+import Work from "@/components/Work.vue";
+import School from "@/components/School.vue";
+import Certificate from "@/components/Certificate.vue";
+import Footer from "@/components/Footer.vue";
+import ActionButton from "@/components/ActionButton.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     Page,
     Section,
@@ -59,22 +62,22 @@ export default {
     School,
     Certificate,
     Footer,
-  },
-  beforeMount() {
-    fetch('data.json')
-      .then((res) => res.json())
-      .then(res => this.data = res);
+    ActionButton,
   },
   data() {
     return {
       data: null,
     };
   },
+  beforeMount() {
+    fetch("data.json")
+      .then((res) => res.json())
+      .then((res) => (this.data = res));
+  },
 };
 </script>
 
 <style>
-@import url('./assets/app.css');
-@import url('./assets/animation.css');
-@import url('./assets/print.css');
+@import url("./assets/app.css");
+@import url("./assets/print.css");
 </style>

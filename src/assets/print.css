@@ -63,7 +63,8 @@
     break-inside: avoid;
   }
 
-  .footer {
+  .footer,
+  .action-button {
     display: none;
   }
 

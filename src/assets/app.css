@@ -63,6 +63,7 @@ body {
   margin-bottom: 0;
 }
 .section__title {
+  font-size: 1.5rem;
   font-weight: 600;
 }
 
@@ -110,6 +111,7 @@ body {
 .school__course,
 .certificate__title {
   flex: 1 0 78%;
+  font-size: 1.2rem;
   font-weight: 600;
   margin: 0;
   order: -1;
@@ -118,6 +120,7 @@ body {
 .work__company,
 .school__name {
   flex: 1 0 100%;
+  font-size: 1rem;
   font-weight: 600;
   margin: 0;
 }
